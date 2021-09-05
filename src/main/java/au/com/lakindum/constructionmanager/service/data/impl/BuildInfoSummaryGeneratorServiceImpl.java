@@ -1,15 +1,15 @@
-package au.com.lakindum.constructionmanager.service.impl;
+package au.com.lakindum.constructionmanager.service.data.impl;
 
 import au.com.lakindum.constructionmanager.model.BuildInfo;
 import au.com.lakindum.constructionmanager.model.ReportInfo;
-import au.com.lakindum.constructionmanager.service.ReportDataGeneratorService;
+import au.com.lakindum.constructionmanager.service.data.BuildInfoSummaryGeneratorService;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class ReportDataGeneratorServiceImpl implements ReportDataGeneratorService {
+public class BuildInfoSummaryGeneratorServiceImpl implements BuildInfoSummaryGeneratorService {
 
     private final Map<Integer, Set<Integer>> customersPerContractMap = new HashMap<>();
     private final Map<String, Set<Integer>> customersPerGeoZoneMap = new HashMap<>();

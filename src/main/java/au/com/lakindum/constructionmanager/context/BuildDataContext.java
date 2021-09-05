@@ -2,7 +2,7 @@ package au.com.lakindum.constructionmanager.context;
 
 import au.com.lakindum.constructionmanager.model.DataExtractionInfo;
 import au.com.lakindum.constructionmanager.model.ReportInfo;
-import au.com.lakindum.constructionmanager.service.BuildDataProviderStrategy;
+import au.com.lakindum.constructionmanager.service.data.BuildDataProviderStrategy;
 
 public class BuildDataContext {
     private final BuildDataProviderStrategy buildDataProviderStrategy;

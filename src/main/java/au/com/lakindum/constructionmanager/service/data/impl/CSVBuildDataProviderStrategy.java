@@ -1,12 +1,12 @@
-package au.com.lakindum.constructionmanager.service.impl;
+package au.com.lakindum.constructionmanager.service.data.impl;
 
 import au.com.lakindum.constructionmanager.exception.ConstructionManagerException;
 import au.com.lakindum.constructionmanager.model.BuildInfo;
 import au.com.lakindum.constructionmanager.model.DataExtractionInfo;
 import au.com.lakindum.constructionmanager.model.ReportInfo;
-import au.com.lakindum.constructionmanager.service.BuildDataProviderStrategy;
-import au.com.lakindum.constructionmanager.service.BuildInfoParserService;
-import au.com.lakindum.constructionmanager.service.ReportDataGeneratorService;
+import au.com.lakindum.constructionmanager.service.data.BuildDataProviderStrategy;
+import au.com.lakindum.constructionmanager.service.data.BuildInfoParserService;
+import au.com.lakindum.constructionmanager.service.data.BuildInfoSummaryGeneratorService;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -16,15 +16,15 @@ import java.util.stream.Stream;
 public class CSVBuildDataProviderStrategy implements BuildDataProviderStrategy {
 
     private final BuildInfoParserService buildInfoParserService;
-    private final ReportDataGeneratorService reportDataGeneratorService;
+    private final BuildInfoSummaryGeneratorService buildInfoSummaryGeneratorService;
 
     private static final String fileName = "project_info.csv";
     private static final String COMMA = ",";
 
     public CSVBuildDataProviderStrategy(BuildInfoParserService buildInfoParserService,
-                                        ReportDataGeneratorService reportDataGeneratorService) {
+                                        BuildInfoSummaryGeneratorService buildInfoSummaryGeneratorService) {
         this.buildInfoParserService = buildInfoParserService;
-        this.reportDataGeneratorService = reportDataGeneratorService;
+        this.buildInfoSummaryGeneratorService = buildInfoSummaryGeneratorService;
     }
 
     public ReportInfo getBuildInfo(final DataExtractionInfo dataExtractionInfo) {
@@ -38,14 +38,14 @@ public class CSVBuildDataProviderStrategy implements BuildDataProviderStrategy {
                 .forEach(strBuildInfo -> {
                     String[] arrBuildInfo = pattern.split(strBuildInfo);
                     BuildInfo buildInfo = buildInfoParserService.getBuildInfo(arrBuildInfo);
-                    reportDataGeneratorService.updateReportInfo(buildInfo);
+                    buildInfoSummaryGeneratorService.updateReportInfo(buildInfo);
                 });
         } catch (NumberFormatException | ConstructionManagerException e) {
             System.out.println("File content parsing error : " + e.getMessage());
         } catch (Exception e) {
             System.out.println("File reading error : " + e.getMessage());
         }
-        return reportDataGeneratorService.getReportInfo();
+        return buildInfoSummaryGeneratorService.getReportInfo();
     }
 
     private Integer getStartIndex(final DataExtractionInfo dataExtractionInfo) {

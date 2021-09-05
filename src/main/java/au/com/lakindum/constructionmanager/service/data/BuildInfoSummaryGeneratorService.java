@@ -1,9 +1,9 @@
-package au.com.lakindum.constructionmanager.service;
+package au.com.lakindum.constructionmanager.service.data;
 
 import au.com.lakindum.constructionmanager.model.BuildInfo;
 import au.com.lakindum.constructionmanager.model.ReportInfo;
 
-public interface ReportDataGeneratorService {
+public interface BuildInfoSummaryGeneratorService {
     void updateReportInfo(BuildInfo buildInfo);
     ReportInfo getReportInfo();
 }

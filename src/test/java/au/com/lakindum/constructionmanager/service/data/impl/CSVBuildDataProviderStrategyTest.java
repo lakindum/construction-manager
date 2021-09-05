@@ -1,4 +1,4 @@
-package au.com.lakindum.constructionmanager.service.impl;
+package au.com.lakindum.constructionmanager.service.data.impl;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

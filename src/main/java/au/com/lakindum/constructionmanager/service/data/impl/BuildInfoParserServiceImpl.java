@@ -1,8 +1,8 @@
-package au.com.lakindum.constructionmanager.service.impl;
+package au.com.lakindum.constructionmanager.service.data.impl;
 
 import au.com.lakindum.constructionmanager.exception.ConstructionManagerException;
 import au.com.lakindum.constructionmanager.model.BuildInfo;
-import au.com.lakindum.constructionmanager.service.BuildInfoParserService;
+import au.com.lakindum.constructionmanager.service.data.BuildInfoParserService;
 
 public class BuildInfoParserServiceImpl implements BuildInfoParserService {
     public static final String BUILD_DURATION_PATTERN = "^[0-9]+[s]$";
