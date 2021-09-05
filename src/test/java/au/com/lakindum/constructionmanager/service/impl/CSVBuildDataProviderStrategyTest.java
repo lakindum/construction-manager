@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CSVBuildDataProviderTest {
+class CSVBuildDataProviderStrategyTest {
 
     @BeforeEach
     void setUp() {
@@ -17,6 +17,17 @@ class CSVBuildDataProviderTest {
     }
 
     @Test
-    void getReportInfo() {
+    void testGetReportInfoWithValidFileShouldPass() {
+
+    }
+
+    @Test
+    void testGetReportInfoWithInvalidFilePathShouldFail() {
+
+    }
+
+    @Test
+    void testGetReportInfoWithBlankLineShouldFail() {
+
     }
 }
