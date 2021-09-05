@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ReportDataGeneratorServiceImplTest {
 
     @Test
-    void updateReportInfo() {
+    void testUpdateReportInfoWithValuesShouldPass() {
     }
 
     @Test
