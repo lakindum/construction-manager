@@ -4,14 +4,15 @@ import au.com.lakindum.constructionmanager.exception.ConstructionManagerExceptio
 import au.com.lakindum.constructionmanager.model.DataExtractionInfo;
 import au.com.lakindum.constructionmanager.model.ReportInfo;
 import au.com.lakindum.constructionmanager.service.data.BuildDataProviderStrategy;
-import org.junit.*;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -29,13 +30,8 @@ public class BuildDataContextTest {
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
 
-    private final PrintStream systemOut = System.out;
-    private ByteArrayOutputStream testOut;
-
     @Before
     public void setUp() throws Exception {
-        testOut = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(testOut));
         buildDataContext = new BuildDataContext(csvBuildDataProviderStrategy);
     }
 
@@ -90,14 +86,5 @@ public class BuildDataContextTest {
             .customersPerGeoZoneMap(customersPerGeoZoneMap)
             .buildDurationsPerGeoZoneMap(buildDurationsPerGeoZoneMap)
             .build();
-    }
-
-    private String getOutput() {
-        return testOut.toString();
-    }
-
-    @After
-    public void restoreSystemInputOutput() {
-        System.setOut(systemOut);
     }
 }
