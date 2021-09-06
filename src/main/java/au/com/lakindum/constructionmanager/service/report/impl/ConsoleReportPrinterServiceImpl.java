@@ -1,14 +1,15 @@
 package au.com.lakindum.constructionmanager.service.report.impl;
 
+import au.com.lakindum.constructionmanager.model.ReportInfo;
 import au.com.lakindum.constructionmanager.service.report.*;
 
 import java.math.BigDecimal;
 
 public class ConsoleReportPrinterServiceImpl implements ReportPrinterService {
 
-    public void print(CustomerCountPerContractReport customerCountPerContractReport) {
+    public void print(CustomerCountPerContractReport customerCountPerContractReport, ReportInfo reportInfo) {
         System.out.println("==== Report Name: Number of unique customerIds for each contractId ====");
-        customerCountPerContractReport.getReportInfo()
+        reportInfo
             .getCustomersPerContractMap()
             .forEach((contractId, customerIds) -> {
                 System.out.println("number of customerIds for contractId : " + contractId + " is " + customerIds.size());
@@ -17,9 +18,9 @@ public class ConsoleReportPrinterServiceImpl implements ReportPrinterService {
         System.out.println("");
     }
 
-    public void print(CustomerCountPerGeoZoneReport customerCountPerGeoZoneReport) {
+    public void print(CustomerCountPerGeoZoneReport customerCountPerGeoZoneReport, ReportInfo reportInfo) {
         System.out.println("==== Report Name: Number of unique customerIds for each geoZone ====");
-        customerCountPerGeoZoneReport.getReportInfo()
+        reportInfo
             .getCustomersPerGeoZoneMap()
             .forEach((geoZone, customerIds) -> {
                 System.out.println("number of customerIds for geoZone : " + geoZone + " is " + customerIds.size());
@@ -28,9 +29,9 @@ public class ConsoleReportPrinterServiceImpl implements ReportPrinterService {
         System.out.println("");
     }
 
-    public void print(CustomerListPerGeoZoneReport customerListPerGeoZoneReport) {
+    public void print(CustomerListPerGeoZoneReport customerListPerGeoZoneReport, ReportInfo reportInfo) {
         System.out.println("==== Report Name: Unique customerIds for each geoZone ====");
-        customerListPerGeoZoneReport.getReportInfo()
+        reportInfo
             .getCustomersPerGeoZoneMap()
             .forEach((geoZone, customerIds) -> {
                 System.out.println("customerIds for geoZone : " + geoZone);
@@ -42,9 +43,9 @@ public class ConsoleReportPrinterServiceImpl implements ReportPrinterService {
         System.out.println("");
     }
 
-    public void print(AverageBuildDurationPerGeoZoneReport averageBuildDurationPerGeoZoneReport) {
+    public void print(AverageBuildDurationPerGeoZoneReport averageBuildDurationPerGeoZoneReport, ReportInfo reportInfo) {
         System.out.println("==== Report Name: Average buildDuration for each geoZone ====");
-        averageBuildDurationPerGeoZoneReport.getReportInfo()
+        reportInfo
             .getBuildDurationsPerGeoZoneMap()
             .forEach((geoZone, buildDurations) -> {
                 BigDecimal totalBuildDuration = new BigDecimal(0);

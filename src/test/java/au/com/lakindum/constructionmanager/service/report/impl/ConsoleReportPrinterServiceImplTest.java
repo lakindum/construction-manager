@@ -1,20 +1,11 @@
 package au.com.lakindum.constructionmanager.service.report.impl;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Ignore;
+import org.junit.Test;
 
+@Ignore
 class ConsoleReportPrinterServiceImplTest {
-
-    @BeforeEach
-    void setUp() {
-    }
-
-    @AfterEach
-    void tearDown() {
-    }
 
     @Test
     void testPrintCustomerCountPerContractReportWithValidInfoShouldPass() {

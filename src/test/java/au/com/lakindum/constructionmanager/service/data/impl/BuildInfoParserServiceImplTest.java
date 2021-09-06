@@ -1,9 +1,10 @@
 package au.com.lakindum.constructionmanager.service.data.impl;
 
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Ignore;
+import org.junit.Test;
 
+@Ignore
 class BuildInfoParserServiceImplTest {
 
     @Test

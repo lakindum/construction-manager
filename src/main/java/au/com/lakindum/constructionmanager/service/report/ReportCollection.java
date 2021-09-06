@@ -1,14 +1,15 @@
 package au.com.lakindum.constructionmanager.service.report;
 
+import au.com.lakindum.constructionmanager.model.ReportInfo;
 import lombok.Builder;
 
 @Builder
 public class ReportCollection {
-    Report[] reports;
+    private final Report[] reports;
 
-    public void printReports(ReportPrinterService reportPrinterService) {
+    public void print(ReportPrinterService reportPrinterService, ReportInfo reportInfo) {
         for (Report report:reports) {
-            report.accept(reportPrinterService);
+            report.accept(reportPrinterService, reportInfo);
         }
     }
 }

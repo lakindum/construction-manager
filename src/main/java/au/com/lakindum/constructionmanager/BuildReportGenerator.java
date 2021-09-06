@@ -15,10 +15,14 @@ import au.com.lakindum.constructionmanager.service.report.impl.ConsoleReportPrin
 public class BuildReportGenerator {
 
     public static void main(String[] args) {
-
         BuildReportGenerator buildReportGenerator = new BuildReportGenerator();
-        ReportInfo reportInfo = buildReportGenerator.collectData();
-        buildReportGenerator.generateReport(reportInfo);
+        try {
+            ReportInfo reportInfo = buildReportGenerator.collectData();
+            buildReportGenerator.generateReport(reportInfo);
+        } catch (Exception e) {
+            System.out.println("ERROR FOUND: ");
+            System.out.println(e.getMessage());
+        }
     }
 
     private ReportInfo collectData() {
@@ -39,11 +43,11 @@ public class BuildReportGenerator {
 
     private void generateReport(ReportInfo reportInfo) {
         Report[] arrReports = new Report[]{
-                new CustomerCountPerContractReport(reportInfo),
-                new CustomerCountPerGeoZoneReport(reportInfo),
-                new CustomerListPerGeoZoneReport(reportInfo),
-                new AverageBuildDurationPerGeoZoneReport(reportInfo)};
+                new CustomerCountPerContractReport(),
+                new CustomerCountPerGeoZoneReport(),
+                new CustomerListPerGeoZoneReport(),
+                new AverageBuildDurationPerGeoZoneReport()};
         ReportCollection reportCollection = ReportCollection.builder().reports(arrReports).build();
-        reportCollection.printReports(new ConsoleReportPrinterServiceImpl());
+        reportCollection.print(new ConsoleReportPrinterServiceImpl(), reportInfo);
     }
 }

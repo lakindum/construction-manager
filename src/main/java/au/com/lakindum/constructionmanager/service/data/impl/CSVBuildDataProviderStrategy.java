@@ -8,6 +8,7 @@ import au.com.lakindum.constructionmanager.service.data.BuildDataProviderStrateg
 import au.com.lakindum.constructionmanager.service.data.BuildInfoParserService;
 import au.com.lakindum.constructionmanager.service.data.BuildInfoSummaryGeneratorService;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.regex.Pattern;
@@ -18,7 +19,7 @@ public class CSVBuildDataProviderStrategy implements BuildDataProviderStrategy {
     private final BuildInfoParserService buildInfoParserService;
     private final BuildInfoSummaryGeneratorService buildInfoSummaryGeneratorService;
 
-    private static final String fileName = "project_info.csv";
+    //private static final String fileName = "project_info.csv";
     private static final String COMMA = ",";
 
     public CSVBuildDataProviderStrategy(BuildInfoParserService buildInfoParserService,
@@ -30,7 +31,7 @@ public class CSVBuildDataProviderStrategy implements BuildDataProviderStrategy {
     public ReportInfo getBuildInfo(final DataExtractionInfo dataExtractionInfo) {
         Pattern pattern = Pattern.compile(COMMA);
         try {
-            Stream<String> buildDataStream = Files.lines(Paths.get(ClassLoader.getSystemResource(fileName)
+            Stream<String> buildDataStream = Files.lines(Paths.get(ClassLoader.getSystemResource(dataExtractionInfo.getSourceFilename())
                     .toURI()));
             buildDataStream
                 .skip(getStartIndex(dataExtractionInfo))
@@ -40,10 +41,10 @@ public class CSVBuildDataProviderStrategy implements BuildDataProviderStrategy {
                     BuildInfo buildInfo = buildInfoParserService.getBuildInfo(arrBuildInfo);
                     buildInfoSummaryGeneratorService.updateReportInfo(buildInfo);
                 });
-        } catch (NumberFormatException | ConstructionManagerException e) {
-            System.out.println("File content parsing error : " + e.getMessage());
+        } catch (NullPointerException | IOException e) {
+            throw new ConstructionManagerException("Error reading from file");
         } catch (Exception e) {
-            System.out.println("File reading error : " + e.getMessage());
+            throw new ConstructionManagerException(e.getMessage());
         }
         return buildInfoSummaryGeneratorService.getReportInfo();
     }
