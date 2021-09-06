@@ -53,7 +53,7 @@ public class ConsoleReportPrinterServiceImpl implements ReportPrinterService {
                     totalBuildDuration = totalBuildDuration.add(new BigDecimal(buildDuration));
                 }
                 BigDecimal averageBuildDuration = totalBuildDuration.divide(new BigDecimal(buildDurations.size()), 2, BigDecimal.ROUND_HALF_UP);
-                System.out.println("average buildDuration for geoZone " + geoZone + " is " + averageBuildDuration);
+                System.out.println("average buildDuration for geoZone " + geoZone + " is " + averageBuildDuration + "s");
             });
         System.out.println("==== Report End ====");
     }
