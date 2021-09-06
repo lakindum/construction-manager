@@ -37,7 +37,7 @@ public class BuildReportGenerator {
         BuildDataContext buildDataContext = new BuildDataContext(csvBuildDataProviderStrategy);
 
         //TODO: Should be executed in a loop when file size is too large
-        DataExtractionInfo dataExtractionInfo = DataExtractionInfo.builder().pageNumber(1).pageSize(20).build();
+        DataExtractionInfo dataExtractionInfo = DataExtractionInfo.builder().sourceFilename("project_info.csv").pageNumber(1).pageSize(20).build();
         return buildDataContext.executeReportDataCollector(dataExtractionInfo);
     }
 

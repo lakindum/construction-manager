@@ -19,7 +19,6 @@ public class CSVBuildDataProviderStrategy implements BuildDataProviderStrategy {
     private final BuildInfoParserService buildInfoParserService;
     private final BuildInfoSummaryGeneratorService buildInfoSummaryGeneratorService;
 
-    //private static final String fileName = "project_info.csv";
     private static final String COMMA = ",";
 
     public CSVBuildDataProviderStrategy(BuildInfoParserService buildInfoParserService,
